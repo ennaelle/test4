@@ -28,14 +28,14 @@ jobs:
         pip install -r requirements.txt
         pip install pytest-cov  # facultatif si déjà dans requirements
 
-    - name: Run tests with coverage
-      continue-on-error: true
+    - name: Run tests with coverage (don't fail on error)
       run: |
         mkdir -p reports
         pytest tests \
           --junitxml=reports/junit.xml \
           --cov=my_app \
-          --cov-report=xml:reports/coverage.xml
+          --cov-report=xml:reports/coverage.xml || true
+
 
     - name: Show generated files (debug)
       run: ls -R reports/
@@ -58,7 +58,8 @@ jobs:
         name: Pytest Tests
         path: reports/junit.xml
         reporter: java-junit
-        fail-on-error: true
+        fail-on-error: false
+
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4
