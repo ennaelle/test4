@@ -52,6 +52,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+    - name: checkout artefacts
+      uses: actions/download-artifact
     - name: Publish test annotations
       uses: dorny/test-reporter@v1
       with:
