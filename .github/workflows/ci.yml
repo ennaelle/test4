@@ -49,6 +49,8 @@ jobs:
     needs: test_and_coverage
 
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
     - name: Publish test annotations
       uses: dorny/test-reporter@v1
       with:
