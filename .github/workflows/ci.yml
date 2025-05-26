@@ -37,11 +37,7 @@ jobs:
         pytest tests \
           --junitxml=reports/junit.xml \
           --cov=my_app \
-          --cov-report=xml:reports/coverage.xml || true
-
-    - name: Show generated files (debug)
-      run: ls -R reports/
-
+          --cov-report=xml:reports/coverage.xml
     - name: Upload test report
       uses: actions/upload-artifact@v4
       with:
