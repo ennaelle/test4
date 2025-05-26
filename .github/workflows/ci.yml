@@ -10,7 +10,7 @@ permissions:
   checks: write
 
 jobs:
-  test:
+  prepare:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,6 +28,9 @@ jobs:
         pip install -r requirements.txt
         pip install pytest-cov  # facultatif si déjà dans requirements
 
+  test_and_coverage:  
+    runs-on: ubuntu-latest
+    steps:
     - name: Run tests with coverage (don't fail on error)
       run: |
         mkdir -p reports
@@ -52,6 +55,10 @@ jobs:
         name: coverage-report
         path: reports/coverage.xml
 
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
     - name: Publish test annotations
       uses: dorny/test-reporter@v1
       with:
@@ -59,7 +66,6 @@ jobs:
         path: reports/junit.xml
         reporter: java-junit
         fail-on-error: false
-
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4
