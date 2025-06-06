@@ -51,16 +51,15 @@ jobs:
         path: reports/junit.xml
         reporter: java-junit
         fail-on-error: false
-  execute:
-    needs: test_and_coverage
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    - name: Set up Python
-      uses: actions/setup-python@v5
+
+    - name: Generate SLSA attestation
+      uses: slsa-framework/slsa-github-generator/actions/attest@v1.8.0
       with:
-        python-version: '3.11'
-    - name: execute
-      run: |
-        python my_app/ui.py
+          artifact_path: output.txt
+          output_path: provenance.intoto.jsonl
+
+    - name: Upload attestation
+      uses: actions/upload-artifact@v4
+      with:
+          name: provenance
+          path: provenance.intoto.jsonl
