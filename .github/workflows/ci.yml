@@ -53,13 +53,6 @@ jobs:
         fail-on-error: false
 
     - name: Generate SLSA attestation
-      uses: slsa-framework/slsa-github-generator/actions/attest@v1.8.0
+      uses: actions/attest-build-provenance@v2
       with:
-          artifact_path: output.txt
-          output_path: provenance.intoto.jsonl
-
-    - name: Upload attestation
-      uses: actions/upload-artifact@v4
-      with:
-          name: provenance
-          path: provenance.intoto.jsonl
+        subject-path: 'reports/junit.xml'
