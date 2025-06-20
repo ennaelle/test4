@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   trigger-test:
-    uses: ennaelle/hello-ci/.github/workflows/ci.yml@main
+    uses: ennaelle/hello-ci/.github/workflows/main.yml@main
 
   test_and_coverage:
     runs-on: ubuntu-latest
