@@ -9,7 +9,7 @@ def run_app():
             result = add(float(entry1.get()), float(entry2.get()))
             label_result.config(text=f"Résultat: {result}")
         except ValueError:
-            label_result.config(text="Entrée invalide")
+            label_result.config(text="Entrée invalide!!!")
 
     window = tk.Tk()
     window.title("Additionneur simple")
