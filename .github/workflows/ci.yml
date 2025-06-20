@@ -10,6 +10,9 @@ permissions:
   attestations: write  
 
 jobs:
+  trigger-test:
+    uses: ennaelle/hello-ci/.github/workflows/ci.yml@main
+
   test_and_coverage:
     runs-on: ubuntu-latest
 
