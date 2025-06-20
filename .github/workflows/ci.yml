@@ -11,7 +11,15 @@ permissions:
 
 jobs:
   trigger-test:
-    uses: ennaelle/hello-ci/.github/workflows/main.yml@main
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call workflow in repo B
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.REPO_B_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/ennaelle/hello-ci/actions/workflows/main.yml/dispatches \
+            -d '{"ref":"main"}'
 
   test_and_coverage:
     runs-on: ubuntu-latest
