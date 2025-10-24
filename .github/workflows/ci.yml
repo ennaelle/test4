@@ -12,7 +12,7 @@ jobs:
  test2:
     runs-on: ubuntu-latest
     env:
-      MYSECRET: ${{ MYTOKEN1 }}
+      MYSECRET: ${{ secrets.MYTOKEN1 }}
     steps:
       - name: call 2 
         run: echo my secret again $MYSECRET
