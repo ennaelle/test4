@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Call secret
-        run: echo my secret is ${{ secret.MYTOKEN1}}
+        run: echo my secret is ${{ secrets.MYTOKEN1}}
   
  test2:
     runs-on: ubuntu-latest
