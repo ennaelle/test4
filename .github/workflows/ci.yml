@@ -5,6 +5,8 @@ on:
 jobs:
  test1:
     runs-on: ubuntu-latest
+    environment:
+      name: production
     steps:
       - name: Call secret
         run: echo my secret is ${{ secrets.MYTOKEN1}}
